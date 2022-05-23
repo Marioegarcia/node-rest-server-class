@@ -20,16 +20,27 @@ const notasPost = async(req, res = response) => {
 }
 
 const notasGet = async(req = request, res = response) => {
+    let cita = [];
+    const {sentimiento} = req.body
+
+    // if (sentimiento) {
+    //     console.log('sentimiento real');
+    //     cita = await Notas.aggregate([ { $match: { categoria: sentimiento } } ])
+    // }
     
-    // db.users.aggregate(
-    //     [ { $sample: { size: 3 } } ]
-    //  )
-    // const cita = await Notas.findOne();
-    const cita = await Notas.aggregate([ { $sample: { size: 1 } } ])
+    if (cita.length == 0) {
+        console.log('cita.lengiut');
+        cita = await Notas.aggregate([ { $sample: { size: 10 } } ])
+    }
+   
     
+    
+    
+    // const cita = await Notas.aggregate.
 
     res.json({
-        cita:cita[0]
+        cita:cita,
+        sentimiento
     });
 }
 
